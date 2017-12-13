@@ -1,0 +1,37 @@
+body {
+    background: #c0c0c0;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.article {
+    background: #e2e2e2;
+    border: 1px solid darkgray;
+    padding: 10px 20px;
+}
+
+.article__header {
+    font-size: 1.4em;
+    color: #111;
+}
+
+.article__author {
+    font-size: 1.2em;
+    color: #909090;
+}
+
+.article__text {
+    color: #242424;
+}
+
+.my_gala {
+    background: #bb9933;
+}
+
+.image_normal {
+    width: 200px;
+}
+
+.image_selected {
+    width: 600px;
+}
