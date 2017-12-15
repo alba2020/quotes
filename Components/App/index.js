@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import QuoteList from '../QuoteList'
+import SocialLinks from '../SocialLinks'
 
 import data from '../../data.json'
 
@@ -32,6 +33,7 @@ class App extends Component {
                                 ) >= 0
                     )}
                 />
+                <SocialLinks />
             </div>
         )
     }
