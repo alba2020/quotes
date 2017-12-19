@@ -1,10 +1,8 @@
-var path = require("path")
+var path = require('path')
 
 module.exports = {
     devtool: 'source-map',
-    entry: [
-        './index.js'
-    ],
+    entry: ['./index.js'],
     output: {
         path: path.join(__dirname, 'build'),
         filename: 'bundle.js',
@@ -23,6 +21,20 @@ module.exports = {
             {
                 test: /\.json$/,
                 loaders: ['json-loader']
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 12000,
+                            name: 'img/[name].[hash:8].[ext]'
+                        }
+                    },
+                    'image-webpack-loader'
+                ],
+                exclude: /node_modules/
             }
         ]
     },
