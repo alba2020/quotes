@@ -1,66 +1,46 @@
 import React, { Component } from 'react'
 
-import QuoteList from '../QuoteList'
+import SmartQuoteList from '../SmartQuoteList'
 import SocialLinks from '../SocialLinks'
 
-import axios from 'axios'
-
 import QuotesWait from '../QuotesWait'
+import SearchBox from '../SearchBox'
 
 import data from '../../data.json'
 
 class App extends Component {
-    state = {
-        searchString: '',
-        allQuotes: []
-    }
+  changeSearchString = e => {
+    e.preventDefault()
+    // this.setState({
+    //   searchString: e.target.value
+    // })
+  }
 
-    changeSearchString = e => {
-        e.preventDefault()
-        this.setState({ searchString: e.target.value })
-    }
-
-    componentDidMount() {
-        // console.log('did mount!')
-        axios.get('http://localhost:3001/quotes').then(response => {
-            this.setState({
-                allQuotes: response.data.quotes
-            })
-        })
-    }
-
-    quotes() {
-        if (this.state.allQuotes.length > 0) {
-            return (
-                <QuoteList
-                    quotes={this.state.allQuotes.filter(
-                        q =>
-                            q.text
-                                .toLowerCase()
-                                .indexOf(
-                                    this.state.searchString.toLowerCase()
-                                ) >= 0
-                    )}
-                />
-            )
-        } else {
-            return <QuotesWait />
+  handleClick = e => {
+    console.log('click!')
+    this.props.loadAllQuotes({
+      quotes: [
+        {
+          id: '1',
+          text: 'новая очень смешная цитата здесь',
+          data: '1 april',
+          rating: '0.0'
         }
-    }
+      ]
+    })
+  }
 
-    render() {
-        return (
-            <div className="App">
-                <h1>Цитаты</h1>
-                <input
-                    value={this.state.searchString}
-                    onChange={this.changeSearchString}
-                />
-                {this.quotes()}
-                {/* <SocialLinks /> */}
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="App">
+        <h1> Цитаты </h1>
+        <SearchBox />
+        <SmartQuoteList />
+        {/* <button onClick={this.handleClick}>новые цитаты</button> */}
+        {/* <SocialLinks /> */}
+      </div>
+    )
+  }
 }
 
 export default App

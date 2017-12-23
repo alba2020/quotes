@@ -1,29 +1,36 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { setSearchString } from '../../actionCreators'
 
 class SearchBox extends Component {
-  state = {
-    search: ""
-  };
-
-  setSearch = event => {
-    this.setState({
-      search: event.target.value
-    });
-    this.props.setSearchString(event.target.value);
-  };
+  handleChange = event => {
+    this.props.setSearchString(event.target.value)
+  }
 
   render() {
+    const { searchString } = this.props
+
     return (
       <div>
         <input
           type="text"
-          value={this.state.search}
+          value={searchString}
           placeholder="Enter your search..."
-          onChange={this.setSearch}
+          onChange={this.handleChange}
         />
       </div>
-    );
+    )
   }
 }
 
-export default SearchBox;
+const mapStateToProps = state => ({
+  searchString: state.searchString
+})
+
+const mapDispatchToProps = dispatch => ({
+  setSearchString: newSearchString => {
+    dispatch(setSearchString(newSearchString))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox)

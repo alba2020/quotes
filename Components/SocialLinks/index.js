@@ -8,9 +8,11 @@ const VKIcon = generateShareIcon('vk')
 const OKIcon = generateShareIcon('ok')
 const FBIcon = generateShareIcon('facebook')
 
+const myUrl = 'http://google.com'
+
 const SocialLinks = props => (
     <div>
-        <VKShareButton url="http://localhost">
+        {/* <VKShareButton url="http://localhost">
             <VKIcon size={24} />
             <VKShareCount url="http://localhost" />
         </VKShareButton>
@@ -18,11 +20,11 @@ const SocialLinks = props => (
         <OKShareButton url="http://localhost">
             <OKIcon size={24} />
             <OKShareCount url="http://localhost" />
-        </OKShareButton>
+        </OKShareButton> */}
 
-        <FacebookShareButton url="http://google.com">
+        <FacebookShareButton url={myUrl}>
             <FBIcon size={24} />
-            <FacebookShareCount url="http://google.com" />
+            <FacebookShareCount url={myUrl} />
         </FacebookShareButton>
     </div>
 )
